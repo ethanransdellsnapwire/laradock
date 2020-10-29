@@ -8,9 +8,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik_webgateway"
-      - "traefik.http.routers.snapwire_laradoc.rule=Host(`api.snapwire.eltex.dev`)"
-      - "traefik.http.routers.snapwire_laradoc.entrypoints=web"
-      - "traefik.http.services.snapwire_laradoc.loadbalancer.server.port=80"
+      - ${NGINX_TRAEFIK_RULE:-traefik.http.routers.my-router.rule=Host(`api.localhost`)}
+      - ${NGINX_TRAEFIK_ENRTYPOINTS:-traefik.http.routers.my-router.entrypoints=web}
+      - ${NGINX_TRAEFIK_LOADBALANCER_PORT:-traefik.http.services.my-service.loadbalancer.server.port=80}
 
 networks:
   traefik_webgateway:
